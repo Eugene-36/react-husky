@@ -11,14 +11,21 @@
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
         "preview": "vite preview",
-        "prepare": "husky"
+        "prepare": "husky",
+        "stylelint": "stylelint \"**/*.{css,scss}\"",
+        "stylelint:fix": "stylelint \"**/*.{css,scss}\" --fix",
+        "format:css": "prettier \"**/*.{css,scss}\" --write && stylelint \"**/*.{css,scss}\" --fix"
     },
     "lint-staged": {
         "*.{js,jsx}": [
             "eslint --fix --max-warnings=0",
             "prettier --write"
         ],
-        "*.{json,css,scss,md}": [
+        "**/*.{css,scss}": [
+            "prettier --write",
+            "stylelint --fix"
+        ],
+        "*.{json,md}": [
             "prettier --write"
         ]
     },
@@ -48,6 +55,10 @@
         "husky": "^9.1.7",
         "lint-staged": "^16.2.0",
         "prettier": "^3.6.2",
+        "stylelint": "^16.24.0",
+        "stylelint-config-standard-scss": "^16.0.0",
+        "stylelint-order": "^7.0.0",
+        "stylelint-scss": "^6.12.1",
         "vite": "^7.1.7"
     }
 }
